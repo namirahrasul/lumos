@@ -1,0 +1,24 @@
+#edit-page {
+  margin: 80px auto;
+  text-align: center; /* Center align the text within the container */
+}
+
+.flashcard {
+  width: 60rem;
+  height: fit-content;
+  max-height: 30rem;
+  padding: 20px;
+  margin: 20px auto; /* Center align the flashcards horizontally */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border: 0.5px solid #e6e6e6;
+}
+
+.flashcard img {
+  width: 20rem;
+  height: auto;
+}
+
+.flashcard button {
+  margin: 5px 0px;
+  width: 5rem;
+}

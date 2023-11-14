@@ -1,0 +1,31 @@
+/* Add margin between navbar and container */
+
+
+/* Center align the deckName */
+#deckName {
+ display: flex;
+  justify-content: center;
+  text-align: center;
+  margin:3rem 0rem 2rem 0rem;
+}
+
+ Increase width and height of the card responsively
+.flashcard-container {
+  
+  width: 100%; 
+  min-height: 50vh; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+
+@media (min-width: 768px) {
+  .flashcard-container {
+    width: 70%;
+    min-height: 50vh; 
+  }
+}
+
+.stopwatch-outer-container{
+ padding: 2rem 5rem;
+}
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+ <%- include ('head.ejs', { title: 'Reset Password', stylesheet: '/css/forgot-password.css' }) %>
+ <body>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+    <div class="wrapper bg-dark">
+      <div class="container-fluid main">
+
+        <div class="row g-3" >
+          <div class="col-md-6 side-image">
+            <!----Image here---->
+            <img src="" alt="">
+          </div>
+
+          <div class="col-md-6 right">
+            <div class="logo">
+            <img src="/images/forgot-password/logo1.png" alt="">
+            </div>
+            <div class="input-box">
+              <header>Reset your password</header>
+
+              <form id="send-token-form" action="/auth/send-token" method="post">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Enter a valid email address"
+                  />
+                </div>
+
+
+              <div class="text-center mt-2 mb-2">
+                                <button type="submit" class="submit" style="padding-left: 2.5rem; padding-right: 2.5rem;" 
+                  form="send-token-form">Proceed</button>
+                            </div>
+                            </form>
+           <% if (error) { %>
+                <p class="text-danger mb-2" style="font-size: 10px">
+                  <%= error %>
+                </p>
+                <% } %>
+                 
+              
+                <p class="small fw-bold mt-2 pt-1 mb-2">
+                  Don't have an account?
+                  <a href="/register" class="text-primary">Sign Up</a>
+                </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <%- include('footer.ejs') %>
+ </body>
+ </html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('head.ejs', { title: 'Oikko', stylesheet: '/css/home.css' }) %>
+  <body>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"></script>
+<%- include('navbar.ejs', { user: user }) %>
+ 
+    <!--Showcase-->
+    <section class="bg-dark text-light p-5 text-center text-sm-start">
+      <div class="container">
+        <div class="d-sm-flex align-items-center justify-content-between">
+          <div>
+            <h1>
+              Empowering <br />
+              <span class="text-warning">
+                dreams <br />
+                together
+              </span>
+              <br />
+              <button class="btn btn-danger text-dark fw-bold">
+                <img src="/images/home/play.svg" alt="" />
+                <!-- <i class="bi bi-play-circle-fill"></i> -->
+                Watch Video
+              </button>
+            </h1>
+          </div>
+          <img
+            class="image-fluid w-50 ms-auto d-none d-sm-block"
+            src="/images/home/hero.svg"
+            alt=""
+            style="max-width: 500px; height: 450px"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!--Boxes-->
+    <section class="p-5">
+      <h2 class="text-center">Why use OIKKO?</h2>
+      <div class="container bb">
+        <div class="row text-center g-4">
+          <div class="col-md">
+            <div class="card bg-dark text-light" style="height:200px;">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <i
+                    class="fa-solid fa-diagram-project fa-fade"
+                    style="color: #ffc107"
+                  ></i>
+                </div>
+                <h3 class="card-title mb-3">Diverse project range</h3>
+                <p class="card-text">
+                  From technology to medical needs start any campaign according
+                  to your needs
+                </p>
+                <!-- <a href="#" class="btn btn-dark">Read More</a> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="card bg-dark text-light" style="height:200px;">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <i
+                    class="fa-solid fa-handshake-angle fa-bounce"
+                    style="color: #ffc107"
+                  ></i>
+                </div>
+                <h3 class="card-title mb-3">Help others</h3>
+                <p class="card-text">
+                  Help others to fulfill their dreams and aspirations
+                </p>
+                <!-- <a href="#" class="btn btn-dark">Read More</a> -->
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="card bg-dark text-light" style="height:200px;">
+              <div class="card-body text-center">
+                <div class="h1 mb-3">
+                  <i
+                    class="fa-solid fa-bolt fa-beat"
+                    style="color: #ffc107"
+                  ></i>
+                  <!-- <i class="fa-solid fa-lock fa-bounce"></i> -->
+                </div>
+                <h3 class="card-title mb-3">Fast and reliable</h3>
+                <p class="card-text">
+                  Contributing to a project is now faster and more secured than
+                  before
+                </p>
+                <!-- <a href="#" class="btn btn-dark">Read More</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Bring to life-->
+    <section id="life" class="p-5">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md">
+            <img
+              src="/images/home/life.svg"
+              class="image-fluid"
+              alt=""
+              style="max-width: 350px; height: auto"
+            />
+          </div>
+          <div class="col-md p-5">
+            <h2>Bring a creative project to life</h2>
+            <p class="lead">
+              Bringing a creative project to life is an exhilarating journey of
+              turning ideas into tangible realities. It involves a blend of
+              imagination, innovation, and determination, breathing life into
+              artistic visions, business ventures, or any form of expression.
+              Through collaboration, persistence, and unwavering passion,
+              creators transform concepts into impactful, memorable experiences
+              that resonate with audiences, leaving an indelible mark on the
+              world.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="life" class="p-5 bg-dark text-light">
+      <div class="container">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-md p-5">
+            <h2>Contribute to diverse range of projects</h2>
+            <p class="lead">
+              Join our vibrant crowdfunding community and make a difference by
+              contributing to a diverse range of projects. At Oikko, we believe
+              in the power of collective support to fuel innovation, creativity,
+              and positive change. Whether you're passionate about technology,
+              art, social causes, entrepreneurial ventures, you'll find a
+              multitude of exciting projects to back.There may be cases where
+              medical treatment finances are needed. Your contribution can help
+              turn dreams into reality, make people happy and make a lasting
+              impact on the world."
+            </p>
+          </div>
+          <div class="col-md">
+            <img
+              src="/images/home/diverse.svg"
+              class="image-fluid"
+              alt=""
+              style="max-width: 350px; height: auto"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--Question Accordian-->
+    <section id="quastions" class="p-5">
+      <div class="container">
+        <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+        <div class="accordion accordion-flush" id="questions">
+          <!-- Item-1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#question-one"
+                aria-expanded="false"
+                aria-controls="flush-collapseOne"
+              >
+                Is my project eligible for crowdfunding on OIKKO?
+              </button>
+            </h2>
+            <div
+              id="question-one"
+              class="accordion-collapse collapse"
+              data-bs-parent="#questions"
+            >
+              <div class="accordion-body">
+                To be eligible to use OIKKO you need to be a Bangladeshi
+                citizen, must show relevant documents and must have a bank
+                account
+              </div>
+            </div>
+          </div>
+          <!-- Item-2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTwo"
+                aria-expanded="false"
+                aria-controls="flush-collapseTwo"
+              >
+                What type of projects are usually funded?
+              </button>
+            </h2>
+            <div
+              id="flush-collapseTwo"
+              class="accordion-collapse collapse"
+              data-bs-parent="#questions"
+            >
+              <div class="accordion-body">
+                Projects related to technology, social causes or a campaign to
+                raise money for medical assistance, everything is included
+              </div>
+            </div>
+          </div>
+          <!-- Item-3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseThree"
+                aria-expanded="false"
+                aria-controls="flush-collapseThree"
+              >
+                Do I need a physical product to get started?
+              </button>
+            </h2>
+            <div
+              id="flush-collapseThree"
+              class="accordion-collapse collapse"
+              data-bs-parent="#questions"
+            >
+              <div class="accordion-body">
+                No. If your product or idea is novel, you can convince people
+                from an earlier stage using the prelaunch feature of our website
+                to start building an audience
+              </div>
+            </div>
+          </div>
+          <!-- Item-4 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseFour"
+                aria-expanded="false"
+                aria-controls="flush-collapseFour"
+              >
+                Can I get help in case of medical treatment?
+              </button>
+            </h2>
+            <div
+              id="flush-collapseFour"
+              class="accordion-collapse collapse"
+              data-bs-parent="#questions"
+            >
+              <div class="accordion-body">
+                Surely. If your need finances for your treatment and you do not
+                have that amount you may start a medical crowdfunding campaign
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="team" class="p-5 bg-dark">
+      <div class="contianer">
+        <h2 class="text-center text-white">The Team</h2>
+        <p class="lead text-center text-white mb-5">People behind OIKKO</p>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card bg-light">
+              <div class="card-body text-center">
+                <img
+                  src="/images/home/sameer.jpg"
+                  class="rounded-circle mb-3"
+                  alt=""
+                  style="max-width: 150px; height: auto"
+                />
+                <h4 class="card-title">Sameer Shafayet Latif</h4>
+                <p class="card-text">Aspiring Engineer</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card bg-light">
+              <div class="card-body text-center">
+                <img
+                  src="/images/home/namirah.jpg"
+                  class="rounded-circle mb-3"
+                  alt=""
+                  style="max-width: 200px; height: auto"
+                />
+                <h4 class="card-title">Namirah Rasul</h4>
+                <p class="card-text">Aspiring Engineer</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card bg-light">
+              <div class="card-body text-center">
+                <img
+                  src="/images/home/kiran.jpg"
+                  class="rounded-circle mb-3"
+                  alt=""
+                  style="max-width: 150px; height: auto"
+                />
+                <h4 class="card-title">Rahiduzzaman Kiran</h4>
+                <p class="card-text">Aspiring Engineer</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--Newsletter-->
+    <section class="bg-danger text-light p-5">
+      <div class="container">
+        <div class="d-md-flex justify-content-between align-items-center">
+          <h3 class="mb-3 mb-md-0">Sign Up For Our Newsletter</h3>
+
+          <div class="input-group news-input">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Enter Email"
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+            />
+            <button
+              class="btn btn-dark btn-lg"
+              type="button"
+              id="button-addon2"
+            >
+              Button
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+<%- include('footer.ejs') %>
+  </body>
+</html>
+
+

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('head.ejs', { title: 'Browse Decks' , stylesheet: '/css/browse-campaigns.css' }) %>
+
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+            crossorigin="anonymous"></script>
+        <%-include('navbar.ejs', { user: user }) %>
+
+            <div id="app">
+                <header class="masthead">
+                    <div class="container">
+                        <div class="masthead-subheading">Shared Decks</div>
+
+                    </div>
+                </header>
+
+
+
+                <form id="search-form" method="POST" action="/browse/search">
+                    <section class="search-section">
+                        <div class="search-container">
+                            <input type="text" id="search-input" name="search" placeholder="Search for campaigns...">
+                            <button id="search-button" class="mx-2" form="search-form" type="submit">Search</button>
+                            <button id="search-button" form="search-form" type="reset">Clear</button>
+                        </div>
+                    </section>
+                </form>
+
+
+                <div class="col-5"></div>
+                <div class="col-11">
+                    <div class="row-container">
+                        <div class="dropdown">
+                            <button class="button-class"><b>Sort By</b></button>
+                            <div class="dropdown-content">
+                                <a href="/sort/newest" id="link1">Newest</a>
+                                <a href="/sort/rating" id="link2">Highest Rating</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <section class="filter-section left">
+                    <!-- <form id="filter-form" action="/filter" method="get">
+                        <br>
+                        <div>
+                            <input type="hidden" name="input" id="input" value="">
+                            <h3 class="hed3">Type</h3>
+                            <input v-model="selectedType" type="radio" id="type_prelaunch" name="type"
+                                value="prelaunch">
+                            <label for="type_prelaunch"><b>Prelaunch</b></label><br>
+
+                            <input type="radio" v-model="selectedType" id="type_personal" name="type" value="personal">
+                            <label for="type_personal"><b>Personal Campaign </b></label><br>
+
+                            <input type="radio" v-model="selectedType" id="type_business" name="type" value="business">
+                            <label for="type_business"><b>Business Campaign</b></label><br>
+                        </div>
+
+                        <br>
+                        <div>
+                            <h3 class="hed3">Number of Backers</h3>
+                            <input type="radio" v-model="selectedBackers" id="backers1" name="backers" value="0">
+                            <label for="backers1"><b>Below 500</b></label><br>
+
+                            <input type="radio" v-model="selectedBackers" id="backers2" name="backers" value="500">
+                            <label for="backers2"><b>500 - 1000</b></label><br>
+
+                            <input type="radio" v-model="selectedBackers" id="backers3" name="backers" value="1001">
+                            <label for="backers3"><b>Above 1000</b></label><br>
+                        </div>
+                        <br>
+                        <div>
+                            <h3 class="hed3">Amount Raised</h3>
+                            <input type="radio" v-model="selectedAmount" id="amount1" name="amount" value="0">
+                            <label for="amount1"><b>Below 5,000</b></label><br>
+
+                            <input type="radio" v-model="selectedAmount" id="amount2" name="amount" value="5000">
+                            <label for="amount2"><b>5000 - 10,000</b></label><br>
+
+                            <input type="radio" v-model="selectedAmount" id="amount3" name="amount" value="10001">
+                            <label for="amount3"><b>Above 10000</b></label><br>
+                        </div>
+                        <br>
+                        <div>
+                            <h3 class="hed3">Number of Followers</h3>
+                            <input v-model="selectedFollowers" type="radio" id="no_followers_0" name="followers"
+                                value="0">
+                            <label for="no_followers_0"><b> Below 100</b></label><br>
+
+                            <input v-model="selectedFollowers" type="radio" id="no_followers_100" name="followers"
+                                value="100">
+                            <label for="no_follower_100"><b>100 - 500</b></label><br>
+
+                            <input v-model="selectedFollowers" type="radio" id="no_followers_501" name="followers"
+                                value="501">
+                            <label for="no_followers_501"><b>Above 500</b></label><br>
+                        </div>
+                        <br>
+                        <br>
+
+                        <button class="button-class" type="submit" id="filter-button" form="filter-form">Filter</button>
+
+                    </form> -->
+                </section>
+
+
+
+                <section class="campaigns">
+                    <!-- Page Content -->
+                    <div class="container mt-4 vh-100">
+                        <div>
+                            <p class="gap"></p>
+                            <% if(decks.length==0) { %>
+                                <p>No results found</p>
+                                <% } else {%>
+
+                                    <% for (let i=0; i < decks.length; i +=3) { %>
+                                        <div class="row mb-3 g-5">
+                                            <% for (let j=i; j < i + 3 && j < decks.length; j++) { %>
+
+                                                <div class="col-md-4 mb-lg-5 mr ">
+                                                    <div class="card">
+                                                        <div
+                                                            class="card-body d-flex flex-column justify-content-between">
+                                                            <div class="campaign-info">
+                                                                <div class="card-img-container">
+                                                                </div>
+                                                                <h5 class="card-title fs-sm-3">
+                                                                    <%= decks[j].name %>
+                                                                </h5>
+                                                                <p class="card-text">
+                                                                    <%= decks[j].rating %>
+                                                                </p>
+                                                                <br>
+                                                            </div>
+                                                            <div class="card-actions dropdown deck-action">
+                                                                <button class="btn btn-secondary dropdown-toggle"
+                                                                    type="button" id="choose-dropdown"
+                                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    Choose
+                                                                </button>
+                                                                <ul class="dropdown-menu"
+                                                                    aria-labelledby="choose-dropdown">
+                                                                    <li><a class="dropdown-item"
+                                                                            href="/edit/<%= decks[j].id %>">Edit</a>
+                                                                    </li>
+                                                                    <li><a class="dropdown-item"
+                                                                            href="/review/<%= decks[j].id %>">Review</a>
+                                                                    </li>
+                                                                    <li><a class="dropdown-item"
+                                                                            href="/timed/<%= decks[j].id %>">Timed
+                                                                            Mode</a></li>
+                                                                    <li><a class="dropdown-item"
+                                                                            href="/test/<%= decks[j].id %>">Test
+                                                                            Mode</a></li>
+                                                                </ul>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                        </div>
+                                        <% } %>
+                                            <% } %>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+
+
+            <script>
+
+            </script>
+
+            <!-- <footer>
+        <p>&copy; 2023 Your Company. All Rights Reserved.</p>
+    </footer> -->
+    </body>
+
+</html>

@@ -1,0 +1,33 @@
+.flashcard-container {
+  margin-top: 10rem;
+  width: 70%;
+  height: 60vh; /* 60% of the viewport height */
+  overflow: auto; /* Add this to enable scrolling if card content exceeds the container size */
+  display: flex;
+  left: 15%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+.flashcard-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+  .btn-container {
+   margin-top: 20px;
+   /* Adjust the margin as needed */
+  }
+
+.page{
+  margin-top: 6rem;
+}
+
+.rating-btn-container{
+  margin-top: 1rem;
+}

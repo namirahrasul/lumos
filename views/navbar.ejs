@@ -1,0 +1,72 @@
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 fixed-top">
+  <div class="container-fluid">
+    <a href="/" class="navbar-brand">
+      <img class="custom-img" src="#" alt="LOGO" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navmenu">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link ss active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link ss active" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link ss active" href='/decks/shared'>
+            Browse Decks
+          </a>
+        </li>
+        <% if (user){%>       
+        <li class="nav-item">
+          <a class="nav-link ss active" href="/my-decks/<%=user.email%>">My Decks</a>
+        </li>
+        <% } %>
+        <li class="nav-item">
+          <a class="nav-link ss active" href="/progresstracker">Progress Tracker</a>
+        </li>
+      </ul>
+
+
+
+      <% if (user) { %>
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item ">
+            <a class="nav-link ss active " href="/new-deck" >
+              Create a Deck
+            </a>
+          </li>
+          <div>
+            <li class="nav-item">
+              <a class="nav-link ss active" href="/notification">
+                <%= user.name %>
+              </a>
+            </li>
+
+          </div>
+          <div>
+            <li class="nav-item">
+              <a class="nav-link ss" style="display:none" href="#">
+                <%= user.email %>
+              </a>
+            </li>
+
+          </div>
+          <form action="/auth/logout" method="post">
+            <button class="nav-item nav-link ss active" type="submit">
+              Logout
+            </button>
+          </form>
+          <% } else { %>
+            <ul class="navbar-nav ms-auto">
+              <a class="nav-item nav-link ss active" href="/login">Login</a>
+              <a class="nav-item nav-link ss active" href="/register">Sign Up</a>
+              <% } %>
+            </ul>
+    </div>
+  </div>
+</nav>

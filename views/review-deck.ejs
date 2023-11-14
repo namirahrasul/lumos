@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Review Deck</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+  <link rel="stylesheet" href="/css/review-deck.css" />
+</head>
+
+<body>
+  <%-include('navbar.ejs', { user: user }) %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+
+
+
+    <div class="container page">
+      <div class="row  justify-content-center align-items-center">
+        <div class="col-9 text-center">
+          <h1 id="deckName"></h1>
+          <div class="flashcard-container card my-2">
+            <div class="card-body">
+              <div class="flashcard-side flashcard-front" id="flashcardFront"></div>
+              <div class="flashcard-side flashcard-back" id="flashcardBack" style="display: none;"></div>
+            </div>
+          </div>
+          <div class="btn-container">
+            <button class="btn btn-info flip-button">Flip</button>
+            <button class="btn btn-primary prev-button">Previous</button>
+            <button class="btn btn-success next-button" data-bs-toggle="modal" data-bs-target="#deckCompleteModal">Next</button>
+            <div class="rating-btn-container">
+              <button class="btn btn-warning rate-button" data-rating="1">1</button>
+              <button class="btn btn-warning rate-button" data-rating="2">2</button>
+              <button class="btn btn-warning rate-button" data-rating="3">3</button>
+              <button class="btn btn-warning rate-button" data-rating="4">4</button>
+              <button class="btn btn-warning rate-button" data-rating="5">5</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal fade" id="deckCompleteModal" tabindex="-1" aria-labelledby="deckCompleteModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deckCompleteModalLabel">Deck Complete</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Congratulations! You have completed the deck.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Parse the JSON data
+        const flashcards = JSON.parse('<%- flashcardsJSON %>');
+        const deckName = flashcards[0].deck_name;
+        const ratingBtnContainer = document.querySelector('.rating-btn-container');
+
+        // Set the deck name in the placeholder element
+        document.getElementById('deckName').innerHTML = deckName;
+
+        const flashcardFront = document.getElementById('flashcardFront');
+        const flashcardBack = document.getElementById('flashcardBack');
+        let isFront = true; // Flag to track front/back of the flashcard
+        let currentFlashcardIndex = 0; // Initialize the current flashcard index
+
+        function updateFlashcard() {
+          flashcardFront.textContent = flashcards[currentFlashcardIndex].front;
+          flashcardBack.textContent = flashcards[currentFlashcardIndex].back;
+        }
+
+        updateFlashcard(); // Initial update
+
+        const flipButton = document.querySelector('.flip-button');
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        const rateButtons = document.querySelectorAll('.rate-button');
+
+        // // Function to shuffle the flashcards array
+        // function shuffleFlashcards() {
+        //   for (let i = flashcards.length - 1; i > 0; i--) {
+        //     const j = Math.floor(Math.random() * (i + 1));
+        //     [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+        //   }
+        // }
+
+        // Function to show the front of the flashcard
+        function showFront() {
+          flashcardFront.style.display = 'block';
+          flashcardBack.style.display = 'none';
+          // Show the rating buttons
+          ratingBtnContainer.style.display = 'none';
+        }
+
+        // Function to show the back of the flashcard
+        function showBack() {
+          flashcardFront.style.display = 'none';
+          flashcardBack.style.display = 'block';
+          // Show the rating buttons
+          ratingBtnContainer.style.display = 'block';
+        }
+
+        // Shuffle the flashcards array
+
+        showFront(); // Initially, show the front
+
+        flipButton.addEventListener('click', () => {
+          if (isFront) {
+            showBack();
+          } else {
+            showFront();
+          }
+          isFront = !isFront; // Toggle the flag
+        });
+
+        nextButton.addEventListener('click', () => {
+          if (currentFlashcardIndex < flashcards.length - 1) {
+            currentFlashcardIndex++;
+            updateFlashcard();
+            showFront(); // Show front when going to the next flashcard
+          } else {
+            // If it's the last flashcard, show the "Deck Complete" modal
+            $('#deckCompleteModal').modal('show');
+          }
+        });
+
+        prevButton.addEventListener('click', () => {
+          if (currentFlashcardIndex > 0) {
+            currentFlashcardIndex--;
+            updateFlashcard();
+            showFront(); // Show front when going to the previous flashcard
+          }
+        });
+
+        rateButtons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const rating = button.getAttribute('data-rating');
+            console.log('Rated:', rating);
+            // You can send an AJAX request to update the flashcard rating here
+          });
+        });
+      });
+    </script>
+</body>
+
+</html>

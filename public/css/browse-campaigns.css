@@ -1,0 +1,400 @@
+@import 'home.css';
+ .gap{
+  padding-top:80px;
+ }
+ 
+/* Reset some default styles */
+body, button, div, a {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the dropdown container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style the dropdown button */
+.dropbtn {
+    background-color: #29526d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    size: 100px;
+    width: 164px;
+    height: 50px;
+    text-align: center;
+    font-weight: large ;
+}
+
+/* Style the dropdown content (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+    background-color: #228082;
+    color: white;
+}
+
+/* Show the dropdown content when the button is hovered */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Apply a background color and font styles */
+body {
+    
+    background-color: #ffffff;
+}
+
+/* Style the header and navigation */
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+.deck-action a:hover{
+    background-color: rgb(164, 164, 164);
+    color: rgb(51, 51, 128)
+}
+
+/* Style the search section */
+.search-section {
+    background-image: url('background.jpg'); /* Replace with your image */
+    background-size: cover;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    padding: 10px;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style the filter section */
+.filter-section {
+    text-align: left;
+    margin-bottom: 200px;
+    margin-right: 200px;
+}
+
+.categories {
+    list-style: none;
+    align-items: left;
+    padding: 0
+}
+
+.categories li {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Left Section */
+.left {
+    float: left; /* Align to the left */
+    width: 20%; /* Adjust width as needed */
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.categories input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.campaigns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    height: 10rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Vertically space contents evenly */
+    width: 15rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    padding: 3px 8px 3px 8px; /* Top padding reduced to create space above the button */
+}
+
+
+.card img {
+    max-width: 100%;
+    height: auto;
+    max-height: 200px;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.campaign-info {
+    flex-grow: 1; /* This allows it to take up available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Vertically space title and tagline */
+}
+
+.card-img-container {
+    flex: 1; /* Allow the image to grow or shrink within the available space */
+    display: flex;
+    align-items: center; /* Center the image vertically */
+    justify-content: center; /* Center the image horizontally */
+}
+
+.card-actions {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Increased space between tagline and button */
+}
+.card button {
+     /* Increased margin above the button */
+}
+
+
+/* .card{
+ height: 500px;
+   text-align: center; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width:350px;
+  padding:40px 20px;
+ 
+}
+.card img{
+  max-width: 100%;
+    height: auto;
+    width:auto;
+    max-height: 200px;
+    
+}
+.card-title{
+ font-weight: bold;
+} */
+/* Increase the size of the search input */
+#search-input {
+    width: 500px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    padding: 10px; /* Adjust the padding as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+/* Increase the size of the search button */
+#search-button {
+    width: 100px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    padding: 10px; /* Adjust the padding as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+
+.row {
+  display: flex;
+}
+
+.row-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+
+      /* Target the button by its class */
+       .button-class {
+         /* Define your desired styles */
+         background-color: #1a5e7b; /* Change to your preferred background color */
+         color: #fff; /* Change to your preferred text color */
+         padding: 15px 50px; /* Adjust padding as needed */
+         border: none; /* Remove the button border if desired */
+         border-radius: 5px; /* Add rounded corners if desired */
+         cursor: pointer; /* Show a pointer cursor on hover */
+         /* Add more styles as needed */
+         font-weight: bold;
+       }
+       
+       /* Optional: Add styles for hover and active states */
+       .button-class:hover {
+         background-color: #16585f; /* Change to a different color on hover */
+       }
+       
+       .button-class:active {
+         background-color: #1c6ca8; /* Change to a different color when clicked */
+       }
+
+      .hed3{
+        color: #24446e;
+        font-size:25px ;
+        
+      }
+      .filter-container {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 10px;
+        width:fit-content;
+    }
+    .filter-select {
+        border-radius: 10px;
+        width: 200px; /* Set the desired width for all buttons */
+        background-color: #114757;
+        color: #ffffff;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        transition: background-color;
+
+    }
+    .item {
+        border: 1px solid #000000;
+        border-radius: 10px;
+        padding: 10px;
+        color: #f7f7f7;
+        padding: 10px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        transition: background-color;
+        margin: 10px;
+        background-color: #4c9397;
+    }
+        header.masthead {
+            padding-top: 10rem;
+            padding-bottom: 6rem;
+            text-align: center;
+            color: #fff;
+            background-image: url("../assets/img/header-bg.jpg");
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-position: center center;
+            background-size: cover;
+          }
+          header.masthead .masthead-subheading {
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.5rem;
+            margin-bottom: 25px;
+            font-family: "Roboto Slab", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+          }
+          header.masthead .masthead-heading {
+            font-size: 3.25rem;
+            font-weight: 700;
+            line-height: 3.25rem;
+            margin-bottom: 2rem;
+            font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+          }
+          
+          @media (min-width: 768px) {
+            header.masthead{
+              /* padding-top: 17rem; */
+              /* padding-bottom: 12.5rem; */
+            }
+            header.masthead .masthead-subheading {
+              font-size: 2.25rem;
+              font-style: italic;
+              line-height: 2.25rem;
+              margin-bottom: 2rem;
+            }
+            header.masthead .masthead-heading {
+              font-size: 4.5rem;
+              font-weight: 700;
+              line-height: 4.5rem;
+              margin-bottom: 4rem;
+            }
+          }
+
+          .container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+@media (min-width: 576px) {
+    .container-sm, .container {
+      max-width: 540px;
+    }
+  }
+  @media (min-width: 768px) {
+    .container-md, .container-sm, .container {
+      max-width: 720px;
+    }
+  }
+  @media (min-width: 992px) {
+    .container-lg, .container-md, .container-sm, .container {
+      max-width: 960px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .container-xl, .container-lg, .container-md, .container-sm, .container {
+      max-width: 1140px;
+    }
+  }
+  @media (min-width: 1400px) {
+    .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+      max-width: 1320px;
+    }
+
+   
+  }
