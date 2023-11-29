@@ -69,55 +69,39 @@ router.post('/edit/:flashcardId', [
 ], async (req, res) => {
   try {
     const { flashcardId } = req.params;
-    const { front, back } = req.body;
+    var{ front, back } = req.body;
     const email = req.session.user.email;
 
+    const [oldFlashcard,fields] = await pool.execute('SELECT * from cards WHERE id = ?', [flashcardId]);
+    console.log(oldFlashcard[0]);
     var front_img;
     var back_img;
 
     if (req.files.front_img !== undefined) {
       front_img = req.files.front_img[0].filename;
     } else {
-      front_img = null; // Set to null instead of undefined
+      front_img = oldFlashcard[0].front_img || null;
     }
 
     if (req.files.back_img !== undefined) {
       back_img = req.files.back_img[0].filename;
     } else {
-      back_img = null; // Set to null instead of undefined
+      back_img = oldFlashcard[0].back_img || null;
     }
 
-    const params = [];
-    var sql = 'UPDATE cards SET ';
-
-    if (front !== undefined) {
-      sql += 'front = ?, ';
-      params.push(front);
+    if (front.length === 0 || front === 'undefined') {
+      front = oldFlashcard[0].front || null;
     }
 
-    if (back !== undefined) {
-      sql += 'back = ?, ';
-      params.push(back);
+    if (back.length === 0 || back === 'undefined') {
+      back = oldFlashcard[0].back || null;
     }
 
-    if (front_img !== undefined) {
-      sql += 'front_img = ?, ';
-      params.push(front_img);
-    }
+    const params = [front_img, back_img, front, back, flashcardId];
+    console.log(params);
+    var sql = 'UPDATE cards SET front_img = ?, back_img = ?, front = ?, back = ? WHERE id = ?';
 
-    if (back_img !== undefined) {
-      sql += 'back_img = ?, ';
-      params.push(back_img);
-    }
-
-    if (params.length === 0) {
-      // No valid fields to update
-      return res.status(400).send('No valid fields provided for update');
-    }
-
-    sql = sql.slice(0, -2); // Remove the trailing comma
-    sql += ' WHERE id = ?';
-    params.push(flashcardId);
+    
 
     const [flashcard] = await pool.execute(sql, params);
 
@@ -223,78 +207,22 @@ router.post('/new', [
   }
 });
 
-// router.post('/new', async (req, res) => {
-//   try {
-//     const { deck_id, front, back, front_img, back_img } = req.query;
-//     const categories = [];
-//     const email = req.session.user.email;
-//     console.log(email)
-//     console.log(deck_id)
-//     console.log(front)
-//     console.log(back)
-//     console.log(front_img)
-//     console.log(back_img)
+router.post('/rate/:flashcardId', async (req, res) => {
+  try {
+    const { flashcardId } = req.params;
+    const { rating } = req.body;
+    const email = req.session.user.email;
+    console.log(email)
+    console.log(flashcardId)
+    console.log(rating)
+    
 
-//     // // Iterate through form fields to collect category values
-//     // for (const key of Object.keys(req.body)) {
-//     //  if (key.startsWith('nametext')) {
-//     //   categories.push(req.body[key]);
-//     //  }
-//     // }
-
-//     // Insert the card information into the cards table
-//     var params = []
-//     params.push(deck_id)
-//     var sql = 'INSERT INTO cards (deck_id';
-//     if (front !== undefined) {
-//       sql += ', front'
-//       params.push(front)
-//     }
-//     if (back !== undefined) {
-//       sql += ', back'
-//       params.push(back)
-//     }
-//     if (front_img !== '[object File]') {
-//       sql += ', front_img'
-//       params.push(front_img)
-//     }
-//     if (back_img !== '[object File]') {
-//       sql += ', back_img'
-//       params.push(back_img)
-//     }
-//     sql += ') VALUES (?'
-//     for (var i = 0; i < params.length - 1; i++) {
-//       sql += ', ?'
-//     }
-//     sql += ')'
-//     console.log(sql)
-//     console.log(params)
-//     const [cardResult] = await pool.execute(sql, params)
-//     const cardId = cardResult.insertId;
-//     console.log("cardId", cardId)
-
-//     // // Iterate through the categories and add them to the 'subjects' table if they don't already exist
-//     // for (const category of categories) {
-//     //  const [subject] = await pool.query('SELECT id FROM subjects WHERE name = ?', [category])
-//     //  var subjectId;
-//     //  if (subject.length === 0) {
-//     //   const subjectResult = await pool.execute('INSERT INTO subjects (name) VALUES (?)', [category])
-//     //   subjectId = subjectResult.insertId;
-
-//     //  } else {
-//     //   subjectId = subject[0].id;
-//     //  }
-//     //  console.log(subjectId, deckId)
-//     //  await pool.execute('INSERT INTO subjects_decks (subject_id, deck_id) VALUES (?, ?)', [subjectId, deckId])
-//     // Establish the relationship in the 'subjects_decks' table
-
-//     // }
-//     res.status(200).send('flashcard created successfully');
-
-//     // Redirect to a success page or any other appropriate action
-//   } catch (error) {
-//     console.error('Error creating a new deck:', error);
-//     res.status(500).send('Error creating a new deck');
-//   }
-// });
+    const [ratingResult,fields] = await pool.execute('UPDATE cards SET rating =? WHERE id=?', [flashcardId])
+    console.log(ratingResult[0]);
+    return res.status(200).send('Rating updated successfully');
+  } catch (error) {
+    console.error('Error updating rating:', error);
+    return res.status(500).send('Failed to update rating');
+  }
+})
 module.exports = router

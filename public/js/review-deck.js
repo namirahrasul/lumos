@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
  console.log('DOMContentLoaded function executed');
  // Parse the JSON data
  const flashcards = window.flashcardsJSON;
- console.log('flashcards:', flashcards);
 
  // const deckName = flashcards[0].deck_name;
  const ratingBtnContainer = document.querySelector('.rating-btn-container');
@@ -23,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
  function updateFlashcard() {
   flashcardFrontText.textContent = flashcards[currentFlashcardIndex].front;
   flashcardBackText.textContent = flashcards[currentFlashcardIndex].back;
-  if (flashcards[currentFlashcardIndex].front_image !== null) {
-   flashcardFrontImage.setAttribute('src', `/uploads/${flashcards[currentFlashcardIndex].front_img}`);
+  if(flashcards[currentFlashcardIndex].front_image !== null){
+   flashcardFrontImage.setAttribute('src',`/uploads/${flashcards[currentFlashcardIndex].front_img}`);
    console.log('front image:', flashcardFrontImage);
   }
   if (flashcards[currentFlashcardIndex].back_image !== null) {
@@ -89,9 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
    console.log('Last flashcard');
    nextButton.textContent = 'Finished';
    nextButton.disabled = true;
-   if (isLastFlashcard) {
+   if(isLastFlashcard){
     $('#deckCompleteModal').modal('show');
-
+    
    }
   }
  });
@@ -100,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (currentFlashcardIndex > 0) {
    currentFlashcardIndex--;
    updateFlashcard();
-   showFront();
+   showFront(); 
 
    nextButton.textContent = 'Next';
    nextButton.disabled = false;
@@ -115,44 +114,4 @@ document.addEventListener('DOMContentLoaded', () => {
    // You can send an AJAX request to update the flashcard rating here
   });
  });
-
- // Stopwatch code
- let stopwatchInterval;
- let stopwatchRunning = false;
- let stopwatchSeconds = 0;
-
- function formatTime(seconds) {
-  const hours = Math.floor(seconds / 3600);
-  const minutes = Math.floor((seconds % 3600) / 60);
-  const sec = seconds % 60;
-  return `${String(hours).padStart(2, '0')} : ${String(minutes).padStart(2, '0')} : ${String(sec).padStart(2, '0')}`;
- }
-
- function updateStopwatch() {
-  stopwatchSeconds++;
-  stopwatchDisplay.textContent = formatTime(stopwatchSeconds);
- }
-
- function startStopwatch() {
-  if (!stopwatchRunning) {
-   stopwatchInterval = setInterval(updateStopwatch, 1000);
-   stopwatchRunning = true;
-  }
- }
-
- function toggleStopwatch() {
-  if (stopwatchRunning) {
-   clearInterval(stopwatchInterval);
-   pauseResumeButton.textContent = 'Resume';
-  } else {
-   stopwatchInterval = setInterval(updateStopwatch, 1000);
-   pauseResumeButton.textContent = 'Pause';
-  }
-  stopwatchRunning = !stopwatchRunning;
- }
-
- pauseResumeButton.addEventListener('click', () => {
-  toggleStopwatch();
- });
- startStopwatch();
 });

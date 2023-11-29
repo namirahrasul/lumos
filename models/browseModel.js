@@ -33,7 +33,13 @@ async function getDeckById(deckId) {
 
 async function getAllDecksByEmail(email) {
  try {
-  const sql = `SELECT * from decks where email = ?`
+  const sql = `SELECT d.*, IFNULL(c.card_count, 0) AS card_count
+FROM decks d
+LEFT JOIN (
+    SELECT deck_id, COUNT(*) AS card_count
+    FROM cards
+    GROUP BY deck_id
+) c ON d.id = c.deck_id WHERE d.email= ?`
   const [rows, fields] = await pool.execute(sql, [email])
   return rows
  } catch (error){
@@ -44,7 +50,13 @@ async function getAllDecksByEmail(email) {
 
 async function getMultipleDecks() {
  try {
-  const sql = `SELECT * FROM decks`
+  const sql = `SELECT d.*, IFNULL(c.card_count, 0) AS card_count
+FROM decks d
+LEFT JOIN (
+    SELECT deck_id, COUNT(*) AS card_count
+    FROM cards
+    GROUP BY deck_id
+) c ON d.id = c.deck_id`
 
   const [rows, fields] = await pool.execute(sql) // Replace 'decks' with your table name
   return rows

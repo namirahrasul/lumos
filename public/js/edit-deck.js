@@ -113,10 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function editFlashcard(flashcardId) {
     const form = document.getElementById('edit-flashcard-form');
-    
+
     form.addEventListener('submit', async event => {
       event.preventDefault();
-      
+
       const data = new FormData(form);
       const formDataForFetch = new FormData();
 
@@ -173,39 +173,39 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   async function deleteFlashcard(flashcardId) {
-  
 
-    
-      let urlParams = '/flashcard/delete/' + flashcardId;
 
-      try {
-        const res = await fetch(urlParams, {
-          method: 'POST',
+
+    let urlParams = '/flashcard/delete/' + flashcardId;
+
+    try {
+      const res = await fetch(urlParams, {
+        method: 'POST',
+      });
+
+      if (res.ok) {
+        console.log("res.ok");
+        deleteFlashcardModalBody.textContent = 'Flashcard was deleted successfully';
+        deleteFlashcardModalFooter.innerHTML = '<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="closeDeleteFlashcard">Close</button>';
+        const closeEditFlashcard = document.getElementById('closeDeleteFlashcard');
+        closeEditFlashcard.addEventListener('click', () => {
+          location.reload();
+        });
+      } else if (res.status === 500) {
+        editFlashcardModalBody.textContent = 'Error: Flashcard was not edited successfully';
+        editFlashcardModalFooter.innerHTML = '<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="closeDeleteFlashcard">Close</button>';
+        const closeEditFlashcard = document.getElementById('closeDeleteFlashcard');
+        closeEditFlashcard.addEventListener('click', () => {
+          location.reload();
         });
 
-        if (res.ok) {
-          console.log("res.ok");
-          deleteFlashcardModalBody.textContent = 'Flashcard was deleted successfully';
-          deleteFlashcardModalFooter.innerHTML = '<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="closeDeleteFlashcard">Close</button>';
-          const closeEditFlashcard = document.getElementById('closeDeleteFlashcard');
-          closeEditFlashcard.addEventListener('click', () => {
-            location.reload();
-          });
-        } else if (res.status === 500) {
-          editFlashcardModalBody.textContent = 'Error: Flashcard was not edited successfully';
-          editFlashcardModalFooter.innerHTML = '<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="closeDeleteFlashcard">Close</button>';
-          const closeEditFlashcard = document.getElementById('closeDeleteFlashcard');
-          closeEditFlashcard.addEventListener('click', () => {
-            location.reload();
-          });
-
-        }
-
-
-      } catch (err) {
-        console.log(err.message);
       }
+
+
+    } catch (err) {
+      console.log(err.message);
     }
+  }
 
   deleteButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -219,30 +219,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Function to handle remove button click
   function removeFileInput(inputId) {
     const fileInput = document.getElementById(inputId);
     fileInput.value = ''; // Clear the file input
   }
 
+  // Add event listener for remove buttons in the "Create Flashcard" modal
+  const createRemoveFrontImgBtn = document.getElementById('create-removeFrontImg');
+  const createRemoveBackImgBtn = document.getElementById('create-removeBackImg');
 
-  // Add event listeners for remove buttons
-  const removeFrontImgBtn = document.getElementById('removeFrontImg');
-  const removeBackImgBtn = document.getElementById('removeBackImg');
+  createRemoveFrontImgBtn.addEventListener('click', () => {
+    console.log('Create Remove Front Image Clicked');
+    removeFileInput('create-front_img');
+  });
 
-  if (removeFrontImgBtn && removeBackImgBtn) {
-    removeFrontImgBtn.addEventListener('click', () => {
-      console.log('Remove Front Image Clicked');
-      removeFileInput('front_img');
-    });
+  createRemoveBackImgBtn.addEventListener('click', () => {
+    console.log('Create Remove Back Image Clicked');
+    removeFileInput('create-back_img');
+  });
 
-    removeBackImgBtn.addEventListener('click', () => {
-      console.log('Remove Back Image Clicked');
-      removeFileInput('back_img');
-    });
-  }
+  // Add event listener for remove buttons in the "Edit Flashcard" modal
+  const editRemoveFrontImgBtn = document.getElementById('edit-removeFrontImg');
+  const editRemoveBackImgBtn = document.getElementById('edit-removeBackImg');
 
+  editRemoveFrontImgBtn.addEventListener('click', () => {
+    console.log('Edit Remove Front Image Clicked');
+    removeFileInput('front_img');
+  });
 
-
+  editRemoveBackImgBtn.addEventListener('click', () => {
+    console.log('Edit Remove Back Image Clicked');
+    removeFileInput('back_img');
+  });
 
 });

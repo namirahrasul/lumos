@@ -136,8 +136,10 @@
                                                                 <h5 class="card-title fs-sm-3">
                                                                     <%= decks[j].name %>
                                                                 </h5>
-                                                                <p class="card-text">
-                                                                    <%= decks[j].rating %>
+                                                                <p class="card-text align-items-center mb-2">
+                                                                    <span class="me-2">Cards: <%= decks[j].card_count %>
+                                                                            </span>
+                                                                    <span>Rating: <%= decks[j].rating %></span>
                                                                 </p>
                                                                 <br>
                                                             </div>
@@ -150,17 +152,19 @@
                                                                 <ul class="dropdown-menu"
                                                                     aria-labelledby="choose-dropdown">
                                                                     <li><a class="dropdown-item"
-                                                                            href="/edit/<%= decks[j].id %>">Edit</a>
+                                                                            href="/deck/save/<%= decks[j].id %>">Save</a>
                                                                     </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="/review/<%= decks[j].id %>">Review</a>
-                                                                    </li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="/timed/<%= decks[j].id %>">Timed
-                                                                            Mode</a></li>
-                                                                    <li><a class="dropdown-item"
-                                                                            href="/test/<%= decks[j].id %>">Test
-                                                                            Mode</a></li>
+                                                                    <% if(decks[j].card_count>0){%>
+                                                                        <li><a class="dropdown-item"
+                                                                                href="/review/<%= decks[j].id %>">Review</a>
+                                                                        </li>
+                                                                        <li><a class="dropdown-item"
+                                                                                href="/timed/<%= decks[j].id %>">Timed
+                                                                                Mode</a></li>
+                                                                        <li><a class="dropdown-item"
+                                                                                href="/test/<%= decks[j].id %>">Test
+                                                                                Mode</a></li>
+                                                                        <%}%>
                                                                 </ul>
                                                             </div>
 

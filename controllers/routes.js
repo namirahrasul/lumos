@@ -102,11 +102,6 @@ router.use('/flashcard', cardRoutes)
 router.get('/sort/rating', browseController.sortDecksByHighestRating)
 router.get('/sort/newest', browseController.sortDecksByNewest)
 
-router.get('/notification', followController.getNotifications)
-router.get('/MyCampaigns', followController.getMyCampaignsProfile)
-router.get('/FollowedCampaigns', followController.getFollowedCampaignsProfile)
-router.get('/DonatedCampaigns', followController.getBackedCampaignsProfile)
-
 // testing
 // router.get('/approveCampaign/:campaignId', adminController.approveCampaign)
 

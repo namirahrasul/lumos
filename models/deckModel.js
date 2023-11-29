@@ -30,11 +30,11 @@ async function insertFlashcard(todo) {
     throw error
   }
 }
-  
-async function updateFlashcardById(id,todo) {
+
+async function updateFlashcardById(id, todo) {
   try {
     const sql = 'update todo_list set name = ? where id = ?'
-    const [rows, fields] = await pool.execute(sql,[todo, id])
+    const [rows, fields] = await pool.execute(sql, [todo, id])
     return rows.affectedRows
   } catch (error) {
     throw error
@@ -86,7 +86,51 @@ async function getAllSubjects() {
   }
 }
 
+async function getDeckNameByDeckId(deckId) {
+  try {
+    const sql = `SELECT name from decks where id = ?`
+    const [rows, fields] = await pool.execute(
+      sql,
+      [deckId]
+    )
+    if (rows.length === 1) {
+      return rows[0]
+    } else {
+      throw new Error('deck not found')
+    }
+  } catch (error) {
+    throw error
+  }
+}
 
+async function getDeckInfoByDeckId(deckId) {
+  try {
+    const sql = `SELECT * from decks where id = ?`
+    const [rows, fields] = await pool.execute(
+      sql,
+      [deckId]
+    )
+    if (rows.length === 1) {
+      return rows[0]
+    } else {
+      throw new Error('deck not found')
+    }
+  } catch (error) {
+    throw error
+  }
+}
+
+async function saveDeck(deckId, email) {
+
+  try {
+    const sql = 'CALL SaveDeck(?,?)'
+    const [rows, fields] = await pool.execute(sql, [deckId, email])
+    return rows.changedRows;
+  }
+  catch (error) {
+    throw error
+  }
+}
 
 
 module.exports = {
@@ -97,4 +141,8 @@ module.exports = {
   getDeckById,
   getAllTags,
   getAllSubjects,
+  getDeckNameByDeckId,
+  getDeckInfoByDeckId,
+  saveDeck
+
 }

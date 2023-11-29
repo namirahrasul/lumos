@@ -13,7 +13,7 @@
 
       <div id="edit-page">
         <h1 class="text-center">
-          <%=flashcards[0].deck_name%>
+          <%=deck.name%>
         </h1>
 
         <!-- Main Menu -->
@@ -32,7 +32,8 @@
                   <% flashcards.forEach(function(flashcard) { %>
                     <div class="card my-2 flashcard my-5" id="flashcard-<%= flashcard.id %>">
                       <div class="card-body row">
-                        <div class="col-10" id="flashcard-container-<%= flashcard.id %>">
+                        <div class="col-10" id="flashcard-container-
+                        <%= flashcard.id %>">
                           <div class="flashcard-side flashcard-front">
                             <p>
                               <%= flashcard.front %>
@@ -66,106 +67,110 @@
           </div>
         </div>
       </div>
-        <div class="modal fade" id="newFlashcardModal" tabindex="-1" aria-labelledby="newFlashcardModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="newFlashcardModal">Add Flashcard</h5>
+      <div class="modal fade" id="newFlashcardModal" tabindex="-1" aria-labelledby="newFlashcardModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="newFlashcardModal">Add Flashcard</h5>
+            </div>
+            <form id="create-flashcard-form">
+              <div class="modal-body" id="newFlashcardModalBody">
+                <input type="hidden" name="deck_id" value="<%=deck.id%>">
+                <div class="mb-3">
+                  <label for="front" class="form-label">Front</label>
+                  <input type="text" class="form-control" id="create-front" name="front">
+                </div>
+                <div class="mb-3">
+                  <label for="back" class="form-label">Back</label>
+                  <input type="text" class="form-control" id="create-back" name="back">
+                </div>
+                <div class="mb-3">
+                  <label for="front_img" class="form-label">Front Image</label>
+                  <input type="file" class="form-control" id="create-front_img" name="front_img">
+                  <button type="button" class="btn btn-danger mt-2" id="create-removeFrontImg" >Remove </button>
+                </div>
+                <div class="mb-3">
+                  <label for="back_img" class="form-label">Back Image</label>
+                  <input type="file" class="form-control" id="create-back_img" name="back_img">
+                  <button type="button" class="btn btn-danger mt-2" id="create-removeBackImg">Remove </button>
+                </div>
+
               </div>
-              <form id="create-flashcard-form">
-                <div class="modal-body" id="newFlashcardModalBody">
-                  <input type="text" name="deck_id" value="<%=flashcards[0].deck_id%>">
-                  <div class="mb-3">
-                    <label for="front" class="form-label">Front</label>
-                    <input type="text" class="form-control" id="create-front" name="front">
-                  </div>
-                  <div class="mb-3">
-                    <label for="back" class="form-label">Back</label>
-                    <input type="text" class="form-control" id="create-back" name="back">
-                  </div>
-                  <div class="mb-3">
-                    <label for="front_img" class="form-label">Front Image</label>
-                    <input type="file" class="form-control" id="create-front_img" name="front_img">
-                  </div>
-                  <div class="mb-3">
-                    <label for="back_img" class="form-label">Back Image</label>
-                    <input type="file" class="form-control" id="create-back_img" name="back_img">
-                  </div>
+              <div class="modal-footer" id="newFlashcardModalFooter">
+                <button type="submit" class="btn btn-success" id="confirmCreate">Add</button>
+                <button type="reset" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
 
-                </div>
-                <div class="modal-footer" id="newFlashcardModalFooter">
-                  <button type="submit" class="btn btn-success" id="confirmCreate">Add</button>
-                  <button type="reset" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
 
+      <div class="modal fade" id="editFlashcardModal" tabindex="-1" aria-labelledby="editFlashcardModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editFlashcardModal">Edit Flashcard</h5>
+            </div>
+            <form id="edit-flashcard-form">
+              <div class="modal-body" id="editFlashcardModalBody">
+
+                <div class="mb-3">
+                  <label for="front" class="form-label">Front</label>
+                  <input type="text" class="form-control" id="front" name="front">
                 </div>
-              </form>
+                <div class="mb-3">
+                  <label for="back" class="form-label">Back</label>
+                  <input type="text" class="form-control" id="back" name="back">
+                </div>
+                <div class="mb-3">
+                  <label for="front_img" class="form-label">Front Image</label>
+                  <input type="file" class="form-control" id="front_img" name="front_img">
+                  <button type="button" class="btn btn-danger mt-2" id="edit-removeFrontImg">Remove</button>
+                </div>
+                <div class="mb-3">
+                  <label for="back_img" class="form-label">Back Image</label>
+                  <input type="file" class="form-control" id="back_img" name="back_img">
+                  <button type="button" class="btn btn-danger mt-2" id="edit-removeBackImg">Remove </button>
+                </div>
+
+              </div>
+              <div class="modal-footer" id="editFlashcardModalFooter">
+                <button type="submit" class="btn btn-success" id="confirmEdit" type="submit">Edit</button>
+                <button type="reset" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="flashcardDeleteModal" tabindex="-1" aria-labelledby="flashcardDeleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="flashcardDeleteModalLabel">Delete Flashcard</h5>
+              <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <div class="modal-body" id="flashcardDeleteModalBody">
+              Are you sure you want to delete the flashcard?
+            </div>
+            <div class="modal-footer" id="flashcardDeleteModalFooter">
+              <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
             </div>
           </div>
         </div>
+      </div>
+      ,
+      <script src=" https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js "></script>
+     
+      <script src="/js/edit-deck.js">
 
-        <div class="modal fade" id="editFlashcardModal" tabindex="-1" aria-labelledby="editFlashcardModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="editFlashcardModal">Edit Flashcard</h5>
-              </div>
-              <form id="edit-flashcard-form">
-                <div class="modal-body" id="editFlashcardModalBody">
-
-                  <div class="mb-3">
-                    <label for="front" class="form-label">Front</label>
-                    <input type="text" class="form-control" id="front" name="front">
-                  </div>
-                  <div class="mb-3">
-                    <label for="back" class="form-label">Back</label>
-                    <input type="text" class="form-control" id="back" name="back">
-                  </div>
-                  <div class="mb-3">
-                    <label for="front_img" class="form-label">Front Image</label>
-                    <input type="file" class="form-control" id="front_img" name="front_img">
-                    <button type="button" class="btn btn-danger mt-2" id="removeFrontImg">Remove</button>
-                  </div>
-                  <div class="mb-3">
-                    <label for="back_img" class="form-label">Back Image</label>
-                    <input type="file" class="form-control" id="back_img" name="back_img">
-                    <button type="button" class="btn btn-danger mt-2" id="removeBackImg">Remove </button>
-                  </div>
-
-                </div>
-                <div class="modal-footer" id="editFlashcardModalFooter">
-                  <button type="submit" class="btn btn-success" id="confirmEdit" type="submit">Edit</button>
-                  <button type="reset" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <div class="modal fade" id="flashcardDeleteModal" tabindex="-1" aria-labelledby="flashcardDeleteModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="flashcardDeleteModalLabel">Delete Flashcard</h5>
-                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-              </div>
-              <div class="modal-body" id="flashcardDeleteModalBody">
-                Are you sure you want to delete the flashcard?
-              </div>
-              <div class="modal-footer" id="flashcardDeleteModalFooter">
-                <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <script src=" https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js "></script>
-        <script src="/js/edit-deck.js">
-
-        </script>
+      </script>
 
   </body>
 

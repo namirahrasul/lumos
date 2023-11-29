@@ -74,4 +74,83 @@ document.addEventListener('DOMContentLoaded', () => {
    }
   }
  });
+
+ async function createDeck() {
+
+  console.log("inside createDeck")
+
+  const form = document.getElementById('deck-form')
+  const formData = new URLSearchParams(new FormData(form));
+  console.log("data: ", formData);
+
+  for (let entry of formData.entries()) {
+   console.log(entry);
+  }
+
+  try {
+   const res = await fetch('/deck/new', {
+    method: 'POST',
+    body: formData,
+    headers: {
+     'Content-Type': 'application/x-www-form-urlencoded', // or 'multipart/form-data' depending on your needs
+    },
+   });
+   console.log('Request Headers:', res.headers);
+   if (res.ok) {
+    console.log("res.ok");
+    createDeckModalBody.textContent = 'Deck was created successfully';
+    createDeckModalFooter.innerHTML = '<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="closeCreateDeck">Close</button>';
+    const closeCreateDeck = document.getElementById('closeCreateDeck');
+    $('#createDeckModal').modal('show');
+    closeCreateDeck.addEventListener('click', () => {
+     location.reload();
+    });
+   } else if (res.status === 500) {
+
+    createDeckModalBody.textContent = 'Error: Deck was not created successfully';
+    createDeckModalFooter.innerHTML = '<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="closeCreateDeck">Close</button>';
+    const closeCreateDeck = document.getElementById('closeCreateDeck');
+    $('#createDeckModal').modal('show');
+    closeCreateDeck.addEventListener('click', () => {
+     location.reload();
+    });
+
+   }
+
+
+  } catch (err) {
+   console.log(err.message);
+  }
+ }
+
+ const form = document.getElementById('deck-form')
+ form.addEventListener('submit', (event) => {
+  console.log("form submit")
+  event.preventDefault();
+  createDeck();
+ });
+
+ // Function to handle remove button click
+ function removeFileInput(inputId) {
+  const fileInput = document.getElementById(inputId);
+  fileInput.value = ''; // Clear the file input
+ }
+
+
+ // Add event listeners for remove buttons
+ const removeFrontImgBtn = document.getElementById('removeFrontImg');
+ const removeBackImgBtn = document.getElementById('removeBackImg');
+
+ if (removeFrontImgBtn && removeBackImgBtn) {
+  removeFrontImgBtn.addEventListener('click', () => {
+   console.log('Remove Front Image Clicked');
+   removeFileInput('front_img');
+  });
+
+  removeBackImgBtn.addEventListener('click', () => {
+   console.log('Remove Back Image Clicked');
+   removeFileInput('back_img');
+  });
+ }
+
 });

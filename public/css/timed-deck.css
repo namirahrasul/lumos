@@ -1,21 +1,3 @@
-/* Add margin between navbar and container */
-
-
-/* Center align the deckName */
-#deckName {
- display: flex;
-  justify-content: center;
-  text-align: center;
-  margin:3rem 0rem 2rem 0rem;
-}
-
- Increase width and height of the card responsively
-.flashcard-container {
-  
-  width: 100%; 
-  min-height: 50vh; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
-}
 
 
 @media (min-width: 768px) {
@@ -25,7 +7,56 @@
   }
 }
 
-.stopwatch-outer-container{
- padding: 2rem 5rem;
+
+
+.flashcard-container {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  margin: 1rem;
+  padding: 1rem;
+  width: 60rem;
+  height: 25rem;
+  align-items: center;
+  justify-content: center;
+}
+.flashcard-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
 }
 
+  .btn-container {
+   left: 40%;
+   position: relative;
+    margin: 1rem 0;
+  }
+
+.page{
+  margin-top: 6rem;
+}
+
+.rating-btn-container{
+  margin-top: .7rem;
+  
+}
+#frontImg{
+  width: auto;
+  max-width: 20rem;
+  height: auto;
+  max-height: 25rem;
+}
+#backImg{
+  width: auto;
+  max-width: 20rem;
+  height: auto;
+  max-height: 25rem;
+}
+.card{
+
+}
+#deckName{
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}

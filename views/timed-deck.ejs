@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Review Deck</title>
+  <title>Timed Deck</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -19,49 +19,90 @@
 
   <%-include('navbar.ejs', { user: user }) %>
     <div class="container timed-deck-container mt-5">
-      <div class="row">
-        <h1 class="text-center" id="deckName"></h1>
+      <div class="row col-12">
+        <h1 class="text-center" id="deckName"><%=deck.name%></h1>
       </div>
-      <div class="row">
-        <!-- Stopwatch Column (Top Left) -->
-        <div class="col-3 stopwatch-outer-container">
-          <div class="d-flex flex-column align-items-center text-center stopwatch-container">
-            <div class="fs-3" id="stopwatchDisplay">00 : 00 : 00</div>
-            <button id="pauseStopwatch" class="btn btn-dark mt-2" > </button>
-          </div>
+  <div class="row col-12">
+  <div class="col-3">
+  <div class="card timer-container"> <!-- Use float-start to float left -->
+    <div class="card-header">
+      <h3>Timer</h3>
+    </div>
+    <div class="card-body">
+      <div class="timer-container">
+        <div class="timer">
+          <span id="minutes">00</span>
+          <span>:</span>
+          <span id="seconds">00</span>
         </div>
-
-        <!-- Content Column (Top Right) -->
-        <div class="col-9">
-          <!-- Your flashcard and button container code here -->
-          <div class="flashcard-container card my-2">
-            <div class="card-body">
-              <div class="flashcard-side flashcard-front" id="flashcardFront"></div>
-              <div class="flashcard-side flashcard-back" id="flashcardBack" style="display: none;"></div>
-            </div>
-          </div>
-
+        <div class="timer-buttons">
+          <button class="btn btn-success" id="start-timer">Start</button>
+          <button class="btn btn-danger" id="stop-timer">Stop</button>
+          <button class="btn btn-warning" id="reset-timer">Reset</button>
         </div>
-      </div>
-      <div class="row">
-                  <div class="flashcard-btn-container d-flex justify-content-center align-items-center mt-2">
-                    <button class="btn btn-info flip-button m-2">Flip</button>
-                    <button class="btn btn-primary prev-button m-2">Previous</button>
-                    <button class="btn btn-success next-button m-2">Next</button>
-
-                  </div>
-      </div>
-      <div class="row">
-                            <div class="rating-btn-container d-flex justify-content-center align-items-center mt-2">
-                              <button class="btn btn-warning rate-button m-2" data-rating="1">1</button>
-                              <button class="btn btn-warning rate-button m-2" data-rating="2">2</button>
-                              <button class="btn btn-warning rate-button m-2" data-rating="3">3</button>
-                              <button class="btn btn-warning rate-button m-2" data-rating="4">4</button>
-                              <button class="btn btn-warning rate-button m-2" data-rating="5">5</button>
-                            </div>
       </div>
     </div>
-    <script src="/js/timed-deck">
+  </div>
+  </div>
+  <div class="col-9">
+
+            <div class=" flashcard-container card my-2">
+              <div class="card-header">
+                <h3 id="flashcardId"></h3>
+              </div>
+              <div class="card-body">
+                <div class="flashcard-side flashcard-front" id="flashcardFront">
+                  <p id="flashcardFrontText"></p>
+                  <img id="frontImg" src="" alt="" />
+                </div>
+                <div class="flashcard-side flashcard-back" id="flashcardBack" style="display: none;">
+                  <p id="flashcardBackText"></p>
+                  <img id="backImg" src="" alt="" />
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="row col-12">
+
+            <div class="btn-container">
+              <button class="btn btn-info flip-button">Flip</button>
+              <button class="btn btn-primary prev-button">Previous</button>
+              <button class="btn btn-success next-button">Next</button>
+              <div class="rating-btn-container">
+        
+                <button class="btn btn-warning rate-button" data-rating="1">1</button>
+                <button class="btn btn-warning rate-button" data-rating="2">2</button>
+                <button class="btn btn-warning rate-button" data-rating="3">3</button>
+                <button class="btn btn-warning rate-button" data-rating="4">4</button>
+                <button class="btn btn-warning rate-button" data-rating="5">5</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="deckCompleteModal" tabindex="-1" aria-labelledby="deckCompleteModalLabel" visible="false"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="deckCompleteModalLabel">Deck Complete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                Congratulations! You have completed the deck.
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+    <script>
+      window.flashcardsJSON = JSON.parse('<%- flashcardsJSON %>');
+
+    </script>
+    <script src=" https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js "></script>
+    <script src="/js/timed-deck.js">
     </script>
     </body>
     </html>

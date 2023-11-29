@@ -6,7 +6,7 @@
 .flashcard {
   width: 60rem;
   height: fit-content;
-  max-height: 30rem;
+  max-height: 60rem;
   padding: 20px;
   margin: 20px auto; /* Center align the flashcards horizontally */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
@@ -16,6 +16,7 @@
 .flashcard img {
   width: 20rem;
   height: auto;
+  max-height: 50rem;
 }
 
 .flashcard button {
