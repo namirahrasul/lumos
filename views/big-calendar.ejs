@@ -1,0 +1,64 @@
+<link rel="stylesheet" type="text/css" href="stylesheets/big-calendar.css">
+
+<div id="mini-calendar-container">
+
+    <div class="calendar-top">
+        <input type="button" id="month" value="">
+        <input type="button" id="year" value="">
+        <div class="change-year">
+            <input type="button" id="year-down" value="&lt;">
+            <input type="button" id="year-up" value="&gt;">
+        </div>
+    </div>
+
+    <div class="month-picker-container hidden" id="month-picker-container">
+        <table class="month-picker">
+            <tbody>
+            <tr>
+                <td class="month-name">Jan</td>
+                <td class="month-name">Feb</td>
+                <td class="month-name">Mar</td>
+            </tr>
+            <tr>
+                <td class="month-name">Apr</td>
+                <td class="month-name">May</td>
+                <td class="month-name">Jun</td>
+            </tr>
+            <tr>
+                <td class="month-name">Jul</td>
+                <td class="month-name">Aug</td>
+                <td class="month-name">Sep</td>
+            </tr>
+            <tr>
+                <td class="month-name">Oct</td>
+                <td class="month-name">Nov</td>
+                <td class="month-name">Dec</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table class="mini-calendar">
+        <thead>
+        <tr>
+            <th class="day-cell">SUN</th>
+            <th class="day-cell">MON</th>
+            <th class="day-cell">TUE</th>
+            <th class="day-cell">WED</th>
+            <th class="day-cell">THU</th>
+            <th class="day-cell">FRI</th>
+            <th class="day-cell">SAT</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (let i = 1; i <= 6; i++) { %>
+            <tr>
+                <% for (let j = 1; j <= 7; j++) { %>
+                    <td class="date-cell">
+                    </td>
+                <% } %>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>

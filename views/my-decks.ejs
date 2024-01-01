@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<%- include('head.ejs', { title: 'My Decks' , stylesheet: '/css/browse-campaigns.css' }) %>
-
-    <body>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-            integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
-            crossorigin="anonymous"></script>
-        <%-include('navbar.ejs', { user: user }) %>
-
+<%-include('partials/header',{title: 'My Decks', stylesheet:'/css/browse-campaigns.css'});-%>
             <div id="app">
                 <header class="masthead">
                     <div class="container">
@@ -68,13 +56,13 @@
                                                             <div class="campaign-info">
                                                                 <div class="card-img-container">
                                                                 </div>
-                                                                <h5 class="card-title fs-sm-3">
-                                                                    <%= decks[j].name %>
+                                                                <h5 class="card-title">
+                                                                    <%= decks[j].deck.deck_name %>
                                                                 </h5>
                                                                 <p class="card-text align-items-center mb-2">
-                                                                    <span class="me-2">Cards: <%= decks[j].card_count %>
+                                                                    <span class="me-2">Cards: <%= decks[j].deck.cards.length %>
                                                                             </span>
-                                                                    <span>Rating: <%= decks[j].rating %></span>
+                                                                    <span>Rating: <%= decks[j].deck.rating %></span>
                                                                 </p>
                                                                 <br>
                                                             </div>
@@ -86,7 +74,7 @@
                                                                 </button>
                                                                 <ul class="dropdown-menu"
                                                                     aria-labelledby="choose-dropdown">
-                                                                                                                                                                    <% if(decks[j].card_count>0){%>
+                                                                                                                                                                    <% if(decks[j].deck.cards.length>0){%>
                                                                     <li><a class="dropdown-item"
                                                                             href="/review/<%= decks[j].id %>">Review</a>
                                                                     </li>
@@ -98,7 +86,8 @@
                                                                             Mode</a></li>
                                                                     <%}%>
                                                                     <li><a class="dropdown-item"
-                                                                            href="/edit/<%= decks[j].id %>">Edit</a>
+                                                        
+                                                                            href="/deck/edit/<%= decks[j].deck.deck_name %>">Edit</a>
                                                                     </li>
                                                                     <li><a class="dropdown-item delete-deck-button"
                                                                             data-deck-id="<%= decks[j].id %>"
@@ -185,6 +174,4 @@
 
             </script>
 
-    </body>
-
-</html>
+            <%-include('partials/footer')%>

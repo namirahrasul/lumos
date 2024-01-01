@@ -1,0 +1,23 @@
+<%- include('partials/header',{title:'Add Category',stylesheet:'/css/home.css'});-%>
+ <div class="container">
+  <div class="row justify-content-center">
+   <div class="col-md-6">
+
+    <br>
+    <br>
+    <br>
+    <h1 class="my-2 text-center">Add Category</h1>
+    <form id="category-form" action="/categories" method="post">
+     <div class="mb-3">
+      <label for="name" class="d-block form-label">Name</label>
+      <input type="text" class="form-control" id="create-name" name="name">
+     </div>
+     <div class="mb-3 name error">
+     
+     <button class="btn btn-dark" id="add-category" type="submit">Add Category</button>
+    </form>
+
+   </div>
+  </div>
+ </div>
+ <%- include('partials/footer') %>

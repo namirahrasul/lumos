@@ -1,0 +1,37 @@
+<link rel="stylesheet" type="text/css" href="stylesheets/mini-calendar.css">
+
+<div style="border: 1px solid #b7b7b7; padding: 10px 10px 10px 10px; border-radius: 5px" id="mini-calendar-container">
+
+    <div style="display: flex; flex-direction: row; margin-bottom: 5px;">
+        <input type="button" id="month" value="">
+        <input type="button" id="year" value="" style="margin-left: 10px">
+        <div style="display: flex; flex-direction: row; margin-left: 25px">
+            <input type="button" id="year-down" style="right: 5%; margin: 0 5px 0 5px" value="&uarr;">
+            <input type="button" id="year-up" style="right: 5%; margin: 0 5px 0 5px" value="&darr;">
+        </div>
+    </div>
+    <%- include('month-picker.ejs') %>
+
+    <table class="mini-calendar">
+        <thead>
+        <tr>
+            <th class="day-cell">Sun</th>
+            <th class="day-cell">Mon</th>
+            <th class="day-cell">Tue</th>
+            <th class="day-cell">Wed</th>
+            <th class="day-cell">Thu</th>
+            <th class="day-cell">Fri</th>
+            <th class="day-cell">Sat</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (let i = 1; i <= 6; i++) { %>
+            <tr>
+                <% for (let j = 1; j <= 7; j++) { %>
+                    <td class="date-cell"></td>
+                <% } %>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+</div>

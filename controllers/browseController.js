@@ -1,4 +1,24 @@
 const express = require('express')
+const User = require('../models/user')
+
+async function alldecks_get(req, res) {
+  try {
+    const decks = await User.getAllDecksWithAllCards()
+    const categories = await User.getCategories()
+    const tags = await User.getTags()
+    console.log("decks", decks)
+    res.render('browse-decks', { decks, categories, tags, user: res.locals.user, admin: res.locals.admin })
+  } catch (error) {
+    console.error('Error fetching deck data:', error)
+    res.status(500).send('Internal Server Error')
+  }
+}
+
+
+
+
+
+
 
 const sessionStore = require('../models/sessionStore') // Import the sessionStore setup
 const router= express.Router()
@@ -84,6 +104,10 @@ async function sortDecksByNewest(req, res){
 }
 
 module.exports = {
+  alldecks_get,
+
+
+
   getSingleDeck,
   getMultipleDecks,
   getAllDecksByUser,

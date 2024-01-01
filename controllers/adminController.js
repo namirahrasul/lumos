@@ -1,53 +1,16 @@
+const User = require('../models/user');
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
-const adminModel = require('../models/adminModel')
-
-async function getUsers(req, res) {
- const email = req.session.user.email;
- console.log(email);
- try {
-  // Get notification details by email using your model function
-  const users = await adminModel.getUsers(email);
-  console.log(users);
-  if (users === null) {
-   // Handle the case where no notification data is found
-   // You can render the page without that information or show a message
-   res.render('users', { user: req.session.user, users: null });
-  } else {
-   res.render('users', { user: req.session.user, users: users });
-  }
- } catch (error) {
-  console.error('Error fetching notification data:', error);
-  res.status(500).send('Internal Server Error');
- }
+async function dashboard_admin_get(req, res) {
+ res.render('admin_dashboard', { user: res.locals.user, admin: res.locals.admin });
 }
 
-async function getNotApprovedCampaigns(req, res) {
- const email = req.session.user.email;
- console.log(email);
- try {
-  // Get notification details by email using your model function
-  const campaigns = await adminModel.getNotApprovedCampaigns(email);
-  // console.log(campaigns);
-  if (campaigns === null) {
-   // Handle the case where no notification data is found
-   // You can render the page without that information or show a message
-   res.render('unapproved-campaigns', { user: req.session.user, campaigns: null });
-  } else {
-   res.render('unapproved-campaigns', { user: req.session.user, campaigns: campaigns });
-  }
-
- } catch (error) {
-  console.error('Error fetching campaign data:', error);
-  res.status(500).send('Internal Server Error');
- }
+async function users_get(req, res) {
+ const users = await User.find({});
+ res.render('users', { users, user: res.locals.user, admin: res.locals.admin });
 }
-
-
-
-
-
 module.exports = {
- getNotApprovedCampaigns,
- getUsers,
- 
+ dashboard_admin_get,
+ users_get
 }

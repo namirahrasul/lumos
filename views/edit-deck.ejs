@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%- include('head.ejs', { title: 'Review Deck' , stylesheet: '/css/edit-deck.css' }) %>
+<%- include('partials/header', { title: 'Edit Deck' , stylesheet: '/css/edit-deck.css' }); -%>
 
-  <body>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
-
-    <%- include('navbar.ejs',{user: user}) %>
 
       <div id="edit-page">
         <h1 class="text-center">
-          <%=deck.name%>
+          <%=deck.deck_name%>
         </h1>
 
         <!-- Main Menu -->
@@ -26,29 +19,29 @@
         <div id="getFlashcardList" class="section">
           <div class="row justify-content-center align-items-center">
             <div class="col-md-6"> <!-- Adjust the column width based on your preference -->
-              <% if (flashcards.length===0) { %>
+              <% if (deck.cards.length===0) { %>
                 <p>No flashcards available.</p>
                 <% } else { %>
-                  <% flashcards.forEach(function(flashcard) { %>
+                  <% deck.cards.forEach(function(card) { %>
                     <div class="card my-2 flashcard my-5" id="flashcard-<%= flashcard.id %>">
                       <div class="card-body row">
                         <div class="col-10" id="flashcard-container-
                         <%= flashcard.id %>">
                           <div class="flashcard-side flashcard-front">
                             <p>
-                              <%= flashcard.front %>
+                              <%= card.front_text %>
                             </p>
-                            <% if(flashcard.front_img){ %>
-                              <img src="/uploads/<%= flashcard.front_img %>" alt="front image">
+                            <% if(card.front_img){ %>
+                              <img src="/uploads/<%= card.front_img %>" alt="front image">
                               <% } %>
                           </div>
 
-                          <div class="flashcard-side flashcard-back" style="display: none;">
+                          <div class="flashcard-side card-back" style="display: none;">
                             <p>
-                              <%= flashcard.back %>
+                              <%=card.back_text %>
                             </p>
-                            <% if(flashcard.back_img){ %>
-                              <img src="/uploads/<%= flashcard.back_img %>" alt="back image">
+                            <% if(card.back_img){ %>
+                              <img src="/uploads/<%= card.back_img %>" alt="back image">
                               <% } %>
                           </div>
                         </div>
@@ -56,7 +49,7 @@
                           <button class="btn btn-info flip-button">Flip</button>
                           <button class="btn btn-danger edit-button" data-flashcard-id="<%= flashcard.id %>"
                             data-bs-toggle="modal" data-bs-target="#editFlashcardModal">Edit</button>
-                          <button class="btn btn-primary delete-button" data-flashcard-id="<%= flashcard.id %>"
+                          <button class="btn btn-primary delete-button" data-flashcard-id="<%= card.front_txt %>"
                             data-bs-toggle="modal" data-bs-target="#flashcardDeleteModal">Delete</button>
                         </div>
                       </div>
@@ -165,13 +158,7 @@
           </div>
         </div>
       </div>
-      ,
-      <script src=" https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js "></script>
      
-      <script src="/js/edit-deck.js">
+      <script src="/js/edit-deck.js"> </script>
 
-      </script>
-
-  </body>
-
-</html>
+<%-include('partials/footer');-%>

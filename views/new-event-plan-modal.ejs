@@ -1,0 +1,46 @@
+
+<link rel="stylesheet" type="text/css" href="/css/new-event-plan-modal.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div id="overlay-in-new-event" class="modal-overlay"></div>
+
+<div id="new-event" class="modal">
+    <div id="new-event-content">
+        <h4>Add a session</h4>
+        <form id="new-event-form" name="new-event-form" action="/new-planned-event" method="POST">
+            <label id="event-date"></label>
+            <input type="hidden" class="hidden-date" name="eventDate">
+            <div class="new-event-input">
+                <div>
+                    <input type="text" id="event-name" name="deckName" placeholder= "Deck Name" required>
+                </div>
+            </div>
+            <div class="timings">
+                <div class="new-event-input">
+                    <div>
+                        <label for="event-time">Start Time</label>
+                    </div>
+                    <div>
+                        <input type="time" id="event-start-time" class = "event-time" name="eventStartTime" required>
+                    </div>
+                </div>
+                <div class="new-event-input">
+                    <div>
+                        <label for="event-time">End Time</label>
+                    </div>
+                    <div>
+                        <input type="time" id="event-end-time" class = "event-time" name="eventEndTime" required>
+                    </div>
+                </div>
+            </div>
+                <div class="submit">
+                    <button type="submit" id="new-event-submit-button" name="newEventSubmitButton">
+                        Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script src="/js/new-event-plan-modal.js"></script>

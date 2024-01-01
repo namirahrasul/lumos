@@ -1,0 +1,201 @@
+/*mini-calendar is a table*/
+
+.mini-calendar {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 14px;
+    /* margin: 0 auto; */
+    scale: 0.9;
+    min-width: 50%;
+}
+
+#mini-calendar-container {
+    /* border: 1px solid #b7b7b7;  */
+    /* padding: 10px 10px 10px 35px;
+    border-radius: 5px; */
+
+    /* margin: 100px;
+    margin-left: 150px;
+    margin-bottom: 200px; */
+    background-color: white;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+    color: #4a4a4a;
+    /* padding: 1.5rem 3rem 1rem 3rem; */
+    width: 60vw;
+    height: 100%;
+
+}
+
+#mini-calendar-container input[id="month"] {
+    --color: rgba(115, 176, 190, 0.517);
+    --press-color: rgba(64, 147, 166, 0.689);
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid var(--press-color);
+    background-color: var(--color);
+    cursor: pointer;
+}
+
+#mini-calendar-container input[id="year-up"], input[id="year-down"] {
+    --color: rgba(115, 176, 190, 0.517);
+    --press-color: rgba(64, 147, 166, 0.689);
+    width: 35px;
+    height: 40px;
+    font-weight: bold;
+    font-size: 14px;
+    border-radius: 2px;
+    cursor: pointer;
+    /* border: 1px solid var(--press-color); */
+    background-color: var(--color);
+}
+
+#mini-calendar-container input[id="year-up"]:active, input[id="year-down"]:active {
+    background-color: var(--press-color);
+}
+
+#mini-calendar-container input[id="year"] {
+    width: 200px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: #dbd3df32;
+    cursor: default;
+    border-color: #bfdbe1;;
+    /* border-style: solid; */
+    border-width: 1px;
+}
+
+#mini-calendar-container input[id="month"]:active {
+    background-color: var(--press-color);
+}
+
+.mini-calendar td {
+    border-color: rgba(153, 149, 149, 0.828);
+    /* border-style: solid; */
+    border-width: 1px;
+    font-size: 20px;
+    overflow: hidden;
+    word-break: normal;
+    width: 30px;
+    height: 100px;
+    /* vertical-align: top; */
+    cursor: pointer;
+    padding-top: 5px;
+    text-align: center;
+    user-select: none;
+}
+
+.mini-calendar th {
+    border-bottom-color: #4c9aac;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    font-weight: bold;
+    overflow: hidden;
+    word-break: normal;
+    /* background-color: #867de3ed; */
+    /* background-color: rgba(44, 44, 228, 0.097); */
+    color: #338ca0;
+    width: 140px;
+    height: 60px;
+    font-size: 18px;
+}
+
+.mini-calendar .date-cell{
+    font-family: "Segoe UI", Times, sans-serif !important;
+}
+
+.mini-calendar .date-cell.current-month {
+    background-color: #3c3a3a13;
+}
+
+.mini-calendar td:hover {
+    background-color: #d0dee1 !important;
+    font-weight: bold !important;
+    /* color: rgb(99, 65, 209); */
+}
+
+.mini-calendar .date-cell.previous-month:not(:last-child), .date-cell.next-month:not(:last-child) {
+    color: #868686;
+}
+
+.mini-calendar .date-cell.current-date {
+    background-color: rgba(161, 188, 195, 0.9) !important;
+    font-weight: bold;
+    color: rgb(00, 104, 133);
+}
+
+.month-picker-container {
+    border: 1px solid #b7b4b4;
+    border-radius: 10px;
+    display: block;
+    position: absolute;
+    background-color: #f6f5f5;
+    box-shadow: 0 0 20px 3px #b6b5b5;
+    z-index: 2;
+}
+
+.month-picker-container.hidden {
+    display: none;
+}
+
+.month-picker {
+    padding: 5px 5px 5px 5px;
+}
+
+.month-picker td {
+    width: 100px;
+    height: 100px;
+    padding: 5px 5px 5px 5px;
+    cursor: default;
+    text-align: center;
+}
+
+.month-picker td:hover {
+    background-color: #dad8d8;
+}
+
+.calendar-top {
+    display: flex;
+    flex-direction: row;
+    /* margin: auto 0; */
+}
+
+#year {
+    font-size: 16px;
+    margin-left: 10px;
+    margin: 10px 0 5px;
+}
+
+#month {
+    font-size: 16px;
+    margin: 10px 30px 5px;
+}
+
+.change-year {
+    display: flex;
+    flex-direction: row;
+    /* margin-left: 25px; */
+}
+
+#year-down{
+    /* right: 50%; */
+    margin: 10px 0 5px;
+    translate: -200px;
+}
+
+#year-up {
+    margin: 10px 0 5px;
+    translate: -71px;
+}
+.HijriDate{
+    text-align: center;
+    /* padding: 40px 5px 0 0; */
+    font-size:14px;
+    pointer-events: none;
+}
+
+.GregorianDate{
+    pointer-events: none;
+}
